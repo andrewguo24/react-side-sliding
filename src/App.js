@@ -1,28 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ReactDOM from "react-dom";
 import './App.css';
 
-class App extends Component {
+export default class App extends Component {
+  state = {
+    showSlider: false
+  };
+
+  openNav = e => {
+    this.setState({ showSlider: true }, 
+      e => {document.getElementById("mySidenav").style.width = "250px";});
+  };
+
+  closeNav = e => {
+    this.setState({ showSlider: false }, 
+      e => {document.getElementById("mySidenav").style.width = "0";});
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
+      <div>
+        <div id="mySidenav" className="sidenav">
           <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="javascript:void(0)"
+            className="closebtn"
+            onClick={e => this.closeNav(e)}
           >
-            Learn React
+            &times;
           </a>
-        </header>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Clients</a>
+          <a href="#">Contact</a>
+        </div>
+
+        <h2>Animated Sidenav Example</h2>
+        <span onClick={e => this.openNav(e)}>&#9776; open</span>
       </div>
     );
   }
 }
 
-export default App;
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
