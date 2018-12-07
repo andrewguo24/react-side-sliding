@@ -1,29 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import './App.css';
+import "./styles.css";
 
-export default class App extends Component {
+class App extends Component {
   state = {
     showSlider: false
   };
 
   openNav = e => {
-    this.setState({ showSlider: true }, 
-      e => {document.getElementById("mySidenav").style.width = "250px";});
+    this.setState({ showSlider: true }, e => {
+      // document.getElementById("mySidenav").style.width = "250px";
+    });
   };
 
   closeNav = e => {
-    this.setState({ showSlider: false }, 
-      e => {document.getElementById("mySidenav").style.width = "0";});
+    this.setState({ showSlider: false }, e => {
+      // document.getElementById("mySidenav").style.width = "0";
+    });
   };
 
   render() {
     return (
       <div>
-        <div id="mySidenav" className="sidenav">
+        <div
+          id="mySidenav"
+          className="sidenav"
+          style={{
+            width: this.state.showSlider ? "250px" : "0"
+          }}
+        >
           <a
             href="javascript:void(0)"
-            className="closebtn"
+            class="closebtn"
             onClick={e => this.closeNav(e)}
           >
             &times;
